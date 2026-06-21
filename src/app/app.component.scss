@@ -1,0 +1,111 @@
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: hsla(224, 25%, 8%, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.logo-text {
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  
+  .highlight {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.6rem 1.1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+
+    &:hover {
+      color: var(--text-primary);
+      background: hsl(224, 20%, 14%);
+    }
+
+    &.active {
+      color: var(--text-primary);
+      background: hsl(250, 60%, 18%, 0.4);
+      border-color: hsl(250, 80%, 65%, 0.2);
+      box-shadow: 0 0 10px hsla(250, 85%, 65%, 0.1);
+      
+      .nav-icon {
+        filter: drop-shadow(0 0 4px var(--primary));
+      }
+    }
+  }
+}
+
+.main-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  min-height: calc(100vh - 75px);
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+    a {
+      font-size: 0.85rem;
+      padding: 0.5rem 0.8rem;
+    }
+  }
+
+  .main-content {
+    padding: 1.5rem 1rem;
+  }
+}

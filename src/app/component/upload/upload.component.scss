@@ -1,0 +1,219 @@
+.upload-screen {
+  max-width: 720px;
+  margin: 0 auto;
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, var(--text-primary) 30%, var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+  }
+}
+
+.upload-card {
+  padding: 2.5rem;
+}
+
+.input-group {
+  margin-bottom: 1.75rem;
+
+  label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.02em;
+  }
+}
+
+/* Dropzone Styling */
+.dropzone {
+  position: relative;
+  border: 2px dashed var(--border-color);
+  border-radius: 12px;
+  background: hsl(224, 20%, 10%, 0.4);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  transition: all 0.25s ease;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--primary);
+    background: hsl(250, 60%, 18%, 0.08);
+    
+    .upload-icon {
+      transform: translateY(-4px);
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--primary-glow);
+    }
+  }
+
+  &.has-file {
+    border-color: var(--accent-cyan);
+    background: hsl(180, 60%, 15%, 0.05);
+
+    .upload-icon {
+      color: var(--accent-cyan);
+      transform: scale(1.1);
+    }
+  }
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.dropzone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.upload-icon {
+  font-size: 2.5rem;
+  transition: transform 0.25s ease, color 0.25s ease;
+  color: var(--text-muted);
+}
+
+.dropzone-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+
+  .highlight-action {
+    color: var(--primary);
+    font-weight: 600;
+  }
+}
+
+.file-limits {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.file-name {
+  display: block;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.file-size {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Textarea wrapper styling */
+textarea {
+  width: 100%;
+  background: hsl(224, 20%, 9%);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-primary);
+  padding: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  resize: vertical;
+  transition: all 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-glow);
+  }
+
+  &::placeholder {
+    color: var(--text-muted);
+  }
+}
+
+/* Button & Actions */
+.btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
+  color: white;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow), 0 8px 20px hsla(250, 85%, 65%, 0.25);
+    background: linear-gradient(135deg, var(--primary-hover) 0%, var(--accent-purple) 100%);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+.btn-content-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* Error Banner */
+.error-banner {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: hsla(340, 85%, 60%, 0.1);
+  border: 1px solid hsla(340, 85%, 60%, 0.25);
+  border-radius: 10px;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease-out;
+
+  .error-icon {
+    font-size: 1.2rem;
+  }
+
+  .error-text {
+    font-size: 0.9rem;
+    color: hsl(340, 85%, 80%);
+    font-weight: 500;
+  }
+}

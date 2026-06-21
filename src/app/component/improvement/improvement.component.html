@@ -1,0 +1,85 @@
+<div class="improvement-container">
+  <div class="header">
+    <h1>Optimize Resume Section</h1>
+    <p class="subtitle">Select a section and paste your text below to get AI-powered enhancements and tips.</p>
+  </div>
+
+  <div class="split-layout">
+    <!-- Left Panel: Input Form -->
+    <div class="panel form-panel">
+      <form [formGroup]="improveForm" (ngSubmit)="onSubmit()">
+        <div class="input-group">
+          <label for="sectionSelect">Select Section to Improve</label>
+          <select id="sectionSelect" formControlName="section">
+            <option *ngFor="let sec of sections" [value]="sec.value">{{ sec.label }}</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="resumeText">Your Resume Section Content</label>
+          <textarea 
+            id="resumeText" 
+            formControlName="resumeText" 
+            rows="10" 
+            placeholder="Paste your resume summary, job description experience, or skills section here..."
+          ></textarea>
+          <div class="char-count">Min length: 20 chars</div>
+        </div>
+
+        <button type="submit" [disabled]="improveForm.invalid || isLoading" class="btn-primary">
+          <span *ngIf="!isLoading">Improve Section</span>
+          <span *ngIf="isLoading" class="btn-content-loading">
+            <span class="loader-spinner"></span>
+            <span>Improving...</span>
+          </span>  <!-- <span *ngIf="isLoading" class="loader-spinner">Improving...</span> -->
+        </button>
+      </form>
+
+      <div *ngIf="error" class="error-banner">
+        <span class="error-icon">⚠️</span>
+        <span class="error-text">{{ error }}</span>
+      </div>
+    </div>
+
+    <!-- Right Panel: Results View -->
+    <div class="panel results-panel">
+      <!-- Waiting/Initial State -->
+      <div *ngIf="!improvedContent && !isLoading" class="waiting-state">
+        <div class="waiting-icon">✨</div>
+        <h3>AI Optimization Awaiting</h3>
+        <p>Fill out the form and submit to receive standard-compliant copy, high-impact phrasing, and optimization feedback.</p>
+      </div>
+
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="loading-state">
+        <div class="pulse-loader"></div>
+        <h3>Enhancing with AI...</h3>
+        <p>Rewriting statements, mapping achievements, and formatting layout tips.</p>
+      </div>
+
+      <!-- Output State -->
+      <div *ngIf="improvedContent && !isLoading" class="output-state">
+        <div class="result-header">
+          <h3>Improved Output</h3>
+          <button (click)="copyToClipboard()" class="btn-copy" [class.success]="copySuccess">
+            {{ copySuccess ? 'Copied!' : 'Copy to Clipboard' }}
+          </button>
+        </div>
+
+        <div class="improved-card">
+          <p class="improved-text">{{ improvedContent }}</p>
+        </div>
+
+        <div class="tips-section" *ngIf="tips.length > 0">
+          <h4>Optimization Feedback & Tips</h4>
+          <ul class="tips-list">
+            <li *ngFor="let tip of tips" class="tip-item">
+              <span class="tip-dot">🎯</span>
+              <span class="tip-text">{{ tip }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

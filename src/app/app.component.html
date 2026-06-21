@@ -1,0 +1,23 @@
+<header class="app-header">
+  <div class="header-container">
+    <div class="logo">
+      <span class="logo-icon">🚀</span>
+      <span class="logo-text">Resume<span class="highlight">Analyzer</span></span>
+    </div>
+    <nav class="nav-links">
+      <a routerLink="/upload" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <span class="nav-icon">📁</span> Upload Resume
+      </a>
+      <a routerLink="/results" routerLinkActive="active">
+        <span class="nav-icon">📊</span> Analysis Results
+      </a>
+      <a routerLink="/improve" routerLinkActive="active">
+        <span class="nav-icon">✨</span> Improve Section
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>

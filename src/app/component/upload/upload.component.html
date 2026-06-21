@@ -1,0 +1,61 @@
+<div class="upload-screen">
+  <div class="header">
+    <h1>Analyze Your Resume</h1>
+    <p class="subtitle">Extract metrics, scores, keyword gaps, and optimizations against target jobs in seconds.</p>
+  </div>
+
+  <div class="upload-card glass-panel">
+    <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+      <!-- File upload dropzone -->
+      <div class="input-group">
+        <label>Upload Resume (PDF or TXT)</label>
+        <div class="dropzone" [class.has-file]="selectedFile">
+          <input 
+            type="file" 
+            id="resume"
+            accept=".pdf,.txt"
+            (change)="onFileSelected($event)"
+            class="file-input"
+          />
+          <div class="dropzone-content">
+            <span class="upload-icon">{{ selectedFile ? '📄' : '📤' }}</span>
+            <div class="dropzone-text" *ngIf="!selectedFile">
+              <span class="highlight-action">Click to upload</span> or drag and drop
+              <span class="file-limits">Supports PDF and TXT up to 10MB</span>
+            </div>
+            <div class="dropzone-text" *ngIf="selectedFile">
+              <span class="file-name">{{ selectedFile.name }}</span>
+              <span class="file-size">({{ (selectedFile.size / 1024).toFixed(1) }} KB)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job description input -->
+      <div class="input-group">
+        <label for="jobDescription">Target Job Description (Optional)</label>
+        <div class="textarea-wrapper">
+          <textarea 
+            id="jobDescription"
+            formControlName="jobDescription"
+            rows="6"
+            placeholder="Paste target job listing description here to test for skill-match scores..."
+          ></textarea>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="!selectedFile || isLoading" class="btn-primary">
+        <span *ngIf="!isLoading">Analyze Resume</span>
+        <span *ngIf="isLoading" class="btn-content-loading">
+          <span class="loader-spinner"></span>
+          <span>Running AI Analysis...</span>
+        </span>
+      </button>
+    </form>
+
+    <div *ngIf="error" class="error-banner">
+      <span class="error-icon">⚠️</span>
+      <span class="error-text">{{ error }}</span>
+    </div>
+  </div>
+</div>

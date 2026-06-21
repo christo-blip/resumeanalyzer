@@ -1,0 +1,56 @@
+<div class="results-container" *ngIf="analysis; else noData">
+      <h2>Analysis Results</h2>
+
+      <div class="score-card">
+        <div class="score-box ats-score">
+          <div class="score-value">{{ analysis.atsScore }}</div>
+          <div class="score-label">ATS Score</div>
+        </div>
+        <div class="score-box job-match">
+          <div class="score-value">{{ analysis.jobMatchScore }}</div>
+          <div class="score-label">Job Match</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Summary</h3>
+        <p>{{ analysis.summary }}</p>
+      </div>
+
+      <div class="section">
+        <h3>Strengths</h3>
+        <ul>
+          <li *ngFor="let strength of analysis.strengths">{{ strength }}</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>Improvement Suggestions</h3>
+        <ul>
+          <li *ngFor="let improvement of analysis.improvements">{{ improvement }}</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>Keywords Found</h3>
+        <div class="tags">
+          <span *ngFor="let keyword of analysis.keywords" class="tag">{{ keyword }}</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Missing Keywords</h3>
+        <div class="tags">
+          <span *ngFor="let keyword of analysis.missingKeywords" class="tag missing">{{ keyword }}</span>
+        </div>
+      </div>
+    </div>
+
+<ng-template #noData>
+  <div class="empty-state">
+    <div class="empty-icon">📊</div>
+    <h2>No Analysis Results Found</h2>
+    <p>Please upload and analyze a resume to see the metrics, ATS scores, and suggestions here.</p>
+    <a routerLink="/upload" class="cta-button">Go to Upload</a>
+  </div>
+</ng-template>
